@@ -1,5 +1,6 @@
 # [html2text](http://www.aaronsw.com/2002/html2text/)
 
+Why: Add the `ignore_tags` option to skip processing these tags.
 html2text is a Python script that converts a page of HTML into clean, easy-to-read plain ASCII text. Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).
 
 Usage: `html2text.py [(filename|url) [encoding]]`
@@ -30,7 +31,8 @@ Or with some configuration options:
     import html2text
     h = html2text.HTML2Text()
     h.ignore_links = True
-    print h.handle("<p>Hello, <a href='http://earth.google.com/'>world</a>!")
+    h.ignore_tags = ['sub']
+    print (h.handle("<p>Hello, <a href='http://earth.google.com/'>world</a>! H<sub>2</sub>O"))
 
 _Originally written by Aaron Swartz. This code is distributed under the GPLv3._
 

@@ -197,6 +197,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         self.ul_item_mark = '*'
         self.emphasis_mark = '_'
         self.strong_mark = '**'
+        self.ignore_tags = []
 
         if out is None:
             self.out = self.outtextf
@@ -443,7 +444,7 @@ class HTML2Text(HTMLParser.HTMLParser):
 
         if tag in ['em', 'i', 'u'] and not self.ignore_emphasis: self.o(self.emphasis_mark)
         if tag in ['strong', 'b'] and not self.ignore_emphasis: self.o(self.strong_mark)
-        if tag in ['del', 'strike', 's']:
+        if tag in ['del', 'strike', 's'] + self.ignore_tags:
             if start:
                 self.o("<"+tag+">")
             else:
